@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="AppUIBasics.ControlExample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="_this"
+    d:DesignHeight="300" d:DesignWidth="400" Loaded="rootGrid_Loaded">
+
+    <Grid x:Name="LayoutRoot" Loaded="rootGrid_Loaded">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+        <!--Style="{ThemeResource SubtitleTextBlockStyle}"-->
+        <TextBlock Margin="0,16" x:Name="txtHeader" Text="{Binding ElementName=_this, Path=HeaderText}"  />
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+            <!--BorderBrush="{ThemeResource SystemControlBackgroundListLowBrush}"
+BorderThickness="1"
+                Background="{ThemeResource SystemControlBackgroundAltHighBrush}"-->
+            <Grid
+                x:Name="ExampleContainer"
+                >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" MaxWidth="320" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Example Display  -->
+                <!-- 
+                    Padding="12"
+                    HorizontalContentAlignment="{x:Bind HorizontalContentAlignment}"
+                
+                -->
+                    <ContentPresenter
+                    x:Name="ControlPresenter"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Content="{Binding ElementName=_this, Path=Example}"     
+                        />
+<!-- 
+                    Padding="16"
+                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                    Content="{x:Bind Options}"
+                    Visibility="{x:Bind Options, Converter={StaticResource nullToVisibilityConverter}}"                 
+                
+                -->
+                    <!--  Options Display  -->
+                    <ContentPresenter
+                    x:Name="OptionsPresenter"
+                    Grid.Column="1"
+                    Margin="0,12,12,12"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Content="{Binding ElementName=_this, Path=Options}"    
+                     />
+                </Grid>
+
+                <!--  XAML display  
+                Background="{ThemeResource SystemControlPageBackgroundListLowBrush}"
+                HorizontalScrollMode="Auto"
+                VerticalScrollMode="Disabled"
+                -->
+                <ScrollViewer
+                Grid.Row="1"
+                
+                HorizontalScrollBarVisibility="Auto"
+                
+                VerticalScrollBarVisibility="Disabled"
+                >
+                    <StackPanel Background="LightGray">
+                    <TextBlock x:Name="XamlPresenter" FontFamily="Consolas"
+                               
+                               Loaded="XamlPresenter_Loaded" 
+                                Margin="16,20"
+                                />
+                    <!--<ContentPresenter
+                        x:Name="XamlPresenter"
+                        Loaded="XamlPresenter_Loaded"
+                        Margin="16,20" />-->
+                        <TextBlock
+                            MinHeight="30"
+                        x:Name="CSharpPresenter"
+                       Loaded="CSharpPresenter_Loaded"
+                        Margin="16,20" />
+                    </StackPanel>
+                </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</UserControl>

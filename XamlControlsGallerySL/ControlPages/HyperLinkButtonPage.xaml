@@ -1,0 +1,48 @@
+﻿<navigation:Page x:Class="AppUIBasics.ControlPages.HyperLinkButtonPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+                 xmlns:local="clr-namespace:AppUIBasics"
+           Title="HyperLinkButtonPage Page" FontFamily="Portable User Interface">
+    <navigation:Page.Resources>
+        <local:InvertBooleanConverter x:Name="inverter"/>
+        <local:BooleanConverter x:Name="nullableBool" />
+    </navigation:Page.Resources>    
+    <StackPanel>
+        <local:ControlExample x:Name="Example1" HeaderText="A hyperlink button that navigates to a URI.">
+            <local:ControlExample.Example>
+                <HyperlinkButton x:Name="Control1" Content="Microsoft home page" NavigateUri="http://www.microsoft.com" IsEnabled="{Binding ElementName=DisableControl1, Path=IsChecked, Converter={StaticResource inverter}, Mode=OneWay}" />
+            </local:ControlExample.Example>
+            <local:ControlExample.Options>
+                <StackPanel>
+                    <CheckBox x:Name="DisableControl1" Content="Disable hyperlink button" />
+                </StackPanel>
+            </local:ControlExample.Options>
+            <local:ControlExample.Xaml>
+                <sys:String>
+                    &lt;HyperlinkButton Content="Microsoft home page" NavigateUri="http://www.microsoft.com" $(IsEnabled)/&gt;
+                </sys:String>
+            </local:ControlExample.Xaml>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution Key="IsEnabled" IsEnabled="{Binding ElementName=DisableControl1, Path=IsChecked, Mode=OneWay}"
+                                                  Value= "IsEnabled=&quot;False&quot; "/>
+            </local:ControlExample.Substitutions>
+        </local:ControlExample>
+
+        <local:ControlExample HeaderText="A hyperlink button that handles a Click event.">
+            <local:ControlExample.Example>
+                <HyperlinkButton x:Name="Control2" Content="Go to Button" Click="GoToHyperlinkButton_Click" />
+            </local:ControlExample.Example>
+            <local:ControlExample.Xaml>
+                <sys:String>
+                    &lt;HyperlinkButton Content="Button" Click="HyperlinkButton_Click"/&gt;
+                </sys:String>
+            </local:ControlExample.Xaml>
+        </local:ControlExample>
+    </StackPanel>
+</navigation:Page>
